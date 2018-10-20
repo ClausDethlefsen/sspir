@@ -5,7 +5,7 @@ function(ss,N=1) {
 
 "ksimulate.SS" <-
 function(ss,N=1) {
-#  require(MASS)
+
   ## Assumes m,C to be from the FILTER (not the smoother!)
   
   ## calculates R_t=G_t*C_{t-1}*G_t^t + W_t,

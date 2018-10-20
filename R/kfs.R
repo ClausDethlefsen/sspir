@@ -316,8 +316,9 @@ Fkfilter <- function(ss, tvar){
     a1 <- Tt[,,1] %*% matrix(ss$m0, ncol=1)
     P1 <- (Tt[,,1] %*% ss$C0 %*% t(Tt[,,1]) + Qt[,,1])
 
-    m1 <- KFAS::SSModel(y=ss$y, Z=Zt, T=Tt, R=diag(ss$p), H=Ht, Q=Qt, a1=a1, P1=P1, distribution="Gaussian" )
-
+    #m1 <- KFAS::SSModel(y=ss$y, Z=Zt, T=Tt, R=diag(ss$p), H=Ht, Q=Qt, a1=a1, P1=P1, distribution="Gaussian" )
+    m1 <- KFAS::SSModel(ss$y~-1+KFAS::SSMcustom(Z=Zt, T=Tt, R=diag(ss$p), Q=Qt, a1=a1, P1=P1), distribution="gaussian" )
+    
     kfas.filt <- KFAS::KFS(m1, smoothing="state")
 
     # Backtracking filtered means, m, and covariances, C
@@ -376,7 +377,8 @@ Fkfs <- function(ss, tvar, offset=1) {
       }
 
       # specify model in KFAS notation
-      m1 <- KFAS::SSModel(y=ss$y, Z=Zt, T=Tt, R=diag(ss$p), Q=Qt, a1=a1, P1=P1, u=offset, distribution=dist)
+      #m1 <- KFAS::SSModel(y=ss$y, Z=Zt, T=Tt, R=diag(ss$p), Q=Qt, a1=a1, P1=P1, u=offset, distribution=dist)
+      m1 <- KFAS::SSModel(ss$y~-1 + KFAS::SSMcustom(Z=Zt, T=Tt, R=diag(ss$p), Q=Qt, a1=a1, P1=P1), u=offset, distribution=dist)
       # Calculates approximating Gaussian model
       out <- KFAS::approxSSM(m1)
       # specify approximating Gaussian model

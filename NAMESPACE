@@ -79,3 +79,13 @@ export("C0",
 S3method(print,Smoothed)
 S3method(print,SS)
 S3method(print,ssm)
+importFrom("mvtnorm", "dmvnorm")
+import("Matrix")
+importFrom("KFAS", "KFS")
+importFrom("MASS", "mvrnorm")
+  importFrom("graphics", "lines", "plot", "points")
+  importFrom("stats", "end", "frequency", "gaussian", "is.empty.model",
+             "is.ts", "model.matrix", "model.response", "rbinom",
+             "rnorm", "rpois", "start", "terms", "ts")
+  importFrom("utils", "write.table")
+

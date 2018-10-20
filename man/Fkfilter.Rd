@@ -53,9 +53,10 @@ m1 <- SS( Fmat = function(tt, x, phi) {
 ## Simulates 100 observation from m1
 m1 <- recursion(m1, 100)
 
-filtered <- Fkfilter(m1, tvar=c(m1$n, 1, 1, 1))
+#filtered <- Fkfilter(m1, tvar=c(m1$n, 1, 1, 1))
+filtered <- kfilter(m1)
 
-plot(filtered$ss)
+#plot(filtered$ss)
 
 }
 \keyword{models}% at least one, from doc/KEYWORDS

@@ -59,18 +59,21 @@ ssm1 <- ssm(m1$y ~ -1 + tvar(polytime(1:m1$n),1)
                       + tvar(polytrig(1:m1$n, 1)), 
                         family="gaussian", fit=FALSE)
 
-smoothed <- Fkfs(ssm1$ss, tvar=c(m1$n, 1, 1, 1))
+#smoothed <- Fkfs(ssm1$ss, tvar=c(m1$n, 1, 1, 1))
+smoothed <- kfs(ssm1$ss, tvar=c(m1$n, 1, 1, 1))
+
 
 ## Non Gaussian model
 phi.start <- StructTS(log10(UKgas),type="BSM")$coef[c(4,1,2,3)]
 gasmodel <- ssm( log10(UKgas) ~ -1+ tvar(polytime(time,1))+
 tvar(sumseason(time,4)), phi=phi.start, fit=FALSE)
 
-smoothed <- Fkfs(gasmodel$ss,tvar=c(1,1,1,1))
+#smoothed <- Fkfs(gasmodel$ss,tvar=c(1,1,1,1))
+smoothed <- kfs(gasmodel$ss,tvar=c(1,1,1,1))
 ## Trend plot
 ## Trend plot
-ts.plot( smoothed$kfas$alphahat[1,] )
+#ts.plot( smoothed$kfas$alphahat[1,] )
 ## Season plot
-ts.plot( smoothed$kfas$alphahat[3,] )
+#ts.plot( smoothed$kfas$alphahat[3,] )
 }
 \keyword{models}% at least one, from doc/KEYWORDS
