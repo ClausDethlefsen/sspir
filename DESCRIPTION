@@ -13,5 +13,5 @@ Description: A glm-like formula language to define dynamic generalized
         Dethlefsen and Lundbye-Christensen (2006) <doi:10.18637/jss.v016.i01>.
 Maintainer: Claus Dethlefsen <claus.dethlefsen@gmail.com>
 License: GPL (>= 2)
-Depends: R (>= 2.15.1) 
+Depends: R (>= 2.15.1)
 Imports: mvtnorm, Matrix, KFAS, MASS
